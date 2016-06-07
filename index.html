@@ -42,6 +42,7 @@
 <script type="application/javascript">
     rows = 20;
     cols = 10;
+    count = 0;
 
     //i,j,l,s,z,t,o
     shapeI = [[0,0],[1,0],[2,0],[3,0]];
@@ -74,6 +75,8 @@
         currentColor = colors[rand];
         draw(currentShape,currentColor);
 
+        var start = window.setInterval(fall, 1000);
+
     }
 
     function draw(shape,color) {
@@ -82,6 +85,16 @@
             classname = "block active " + color;
             document.getElementById(blockid).setAttribute("class", classname);
         }
+    }
+
+    function fall() {
+        if (count < rows) {
+            count += 1;
+        } else {
+            count = 0;
+        }
+        console.log(count);
+
     }
 
     createGame();
