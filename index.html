@@ -77,11 +77,13 @@
 
         var start = window.setInterval(
                 function() {
-                    draw(currentShape,currentColor,count);
+
                     if (count < rows) {
                         count += 1;
+                        draw(currentShape,currentColor,count);
                     } else {
                         count = 0;
+                        window.clearInterval(start);
                     }
                     console.log(count);
                 }, 1000);
