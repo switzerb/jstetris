@@ -25,14 +25,13 @@
     rows = 20;
     cols = 10;
 
-    //var rand = myArray[Math.floor(Math.random() * myArray.length)];
-
     //i,j,l,s,z,t,o
+    shapeI = [[0,0],[1,0],[2,0],[3,0]];
     shapeJ = [[0,1],[1,1],[2,1],[2,0]];
     shapeL = [[0,0],[1,0],[2,0],[2,1]];
-    shapeI = [[0,0],[1,0],[2,0],[3,0]];
     shapeS = [[1,0],[1,1],[0,1],[0,2]];
     shapeZ = [[0,0],[0,1],[1,1],[1,2]];
+    shapeT = [[0,0],[0,1],[0,2],[1,1]];
     shapeO = [[0,0],[0,1],[1,0],[1,1]];
 
     function createGame() {
@@ -53,19 +52,22 @@
 
         gameField.innerHTML = board;
 
-        draw(shapeJ);
+        shapes = [shapeJ,shapeL,shapeI,shapeS,shapeZ,shapeO,shapeT];
+        var rand = Math.floor(Math.random() * 7);
+        currentShape = shapes[rand];
+        draw(currentShape);
 
     }
 
     function draw(shape) {
         for(var i = 0; i < shape.length; i++) {
             blockid = "block_" + shape[i][0] +  shape[i][1];
-            console.log(blockid);
             document.getElementById(blockid).setAttribute("class", "block active");
         }
     }
 
     createGame();
+
 </script>
 
 </body>
