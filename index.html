@@ -1,0 +1,52 @@
+<html>
+<head>
+    <style type="text/css">
+        #gamefield {
+            text-align:center;
+        }
+        .block {
+            border: 1px solid slategray;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            font-size: 8px;
+            color: white;
+            background-color: black;
+        }
+        .block_00 {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="gamefield">Loading...</div>
+
+<script type="application/javascript">
+    rows = 20;
+    cols = 10;
+
+    function createGame() {
+        gameField = document.getElementById("gamefield");
+
+        var gameboard = new Array;
+        board = "";
+
+        for(var i = 0; i <= rows; i++) {
+            board = board + "<div>";
+            for(var j = 0; j <= cols; j++) {
+                var block = [i,j];
+                gameboard.push(block);
+                board = board + "<div class='block block_"+i + j +"'>" + i + ", " + j + "</div>"
+            }
+            board = board + "</div>";
+        }
+
+        gameField.innerHTML = board;
+
+    }
+
+    createGame();
+</script>
+
+</body>
+</html>
