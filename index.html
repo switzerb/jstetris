@@ -13,8 +13,26 @@
             color: white;
             background-color: black;
         }
-        .active {
+        .orange {
+            background-color: orange;
+        }
+        .cyan {
+            background-color: cyan;
+        }
+        .lime {
+            background-color: lime;
+        }
+        .purple {
+            background-color: purple;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .red {
             background-color: red;
+        }
+        .yellow {
+            background-color: yellow;
         }
     </style>
 </head>
@@ -36,15 +54,12 @@
 
     function createGame() {
         gameField = document.getElementById("gamefield");
-
-        var gameboard = new Array;
         board = "";
 
         for(var i = 0; i <= rows; i++) {
             board = board + "<div>";
             for(var j = 0; j <= cols; j++) {
                 var block = [i,j];
-                gameboard.push(block);
                 board = board + "<div id='block_" + i + j + "' class='block'>" + i + ", " + j + "</div>"
             }
             board = board + "</div>";
@@ -53,16 +68,19 @@
         gameField.innerHTML = board;
 
         shapes = [shapeJ,shapeL,shapeI,shapeS,shapeZ,shapeO,shapeT];
+        colors = ["blue","orange","cyan","lime","red","yellow","purple"];
         var rand = Math.floor(Math.random() * 7);
         currentShape = shapes[rand];
-        draw(currentShape);
+        currentColor = colors[rand];
+        draw(currentShape,currentColor);
 
     }
 
-    function draw(shape) {
+    function draw(shape,color) {
         for(var i = 0; i < shape.length; i++) {
             blockid = "block_" + shape[i][0] +  shape[i][1];
-            document.getElementById(blockid).setAttribute("class", "block active");
+            classname = "block active " + color;
+            document.getElementById(blockid).setAttribute("class", classname);
         }
     }
 
