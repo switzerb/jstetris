@@ -40,8 +40,8 @@
 <div id="gamefield">Loading...</div>
 
 <script type="application/javascript">
-    rows = 20;
-    cols = 10;
+    ROWS = 20;
+    COLS = 10;
     count = 0;
 
     //i,j,l,s,z,t,o
@@ -57,9 +57,9 @@
         gameField = document.getElementById("gamefield");
         board = "";
 
-        for(var i = 0; i <= rows; i++) {
+        for(var i = 0; i <= ROWS; i++) {
             board = board + "<div>";
-            for(var j = 0; j <= cols; j++) {
+            for(var j = 0; j <= COLS; j++) {
                 var block = [i,j];
                 board = board + "<div id='block_" + i + j + "' class='block'>" + i + ", " + j + "</div>"
             }
@@ -73,27 +73,30 @@
         var rand = Math.floor(Math.random() * 7);
         currentShape = shapes[rand];
         currentColor = colors[rand];
-        //draw(currentShape,currentColor);
 
         var start = window.setInterval(
                 function() {
-
-                    if (count < rows) {
+                    if (count < ROWS) {
+                        if (count == 0) {
+                            draw(currentShape,currentColor,count);
+                        } else {
+                            draw(currentShape, "black", count-1);
+                            draw(currentShape,currentColor,count);
+                        }
                         count += 1;
-                        draw(currentShape,currentColor,count);
                     } else {
                         count = 0;
                         window.clearInterval(start);
                     }
-                    console.log(count);
                 }, 1000);
 
     }
 
     function draw(shape,color,count) {
         for(var i = 0; i < shape.length; i++) {
-            blockid = "block_" + (shape[i][0] + count) +  shape[i][1];
-            console.log(shape[i][0] + count);
+            x = (shape[i][0]) + count;
+            y = shape[i][1];
+            blockid = "block_" + x + y;
             classname = "block active " + color;
             document.getElementById(blockid).setAttribute("class", classname);
         }
