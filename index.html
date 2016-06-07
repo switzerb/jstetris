@@ -13,7 +13,7 @@
             color: white;
             background-color: black;
         }
-        .block_00 {
+        .active {
             background-color: red;
         }
     </style>
@@ -24,6 +24,8 @@
 <script type="application/javascript">
     rows = 20;
     cols = 10;
+
+    //var rand = myArray[Math.floor(Math.random() * myArray.length)];
 
     //i,j,l,s,z,t,o
     shapeJ = [[0,1],[1,1],[2,1],[2,0]];
@@ -44,13 +46,23 @@
             for(var j = 0; j <= cols; j++) {
                 var block = [i,j];
                 gameboard.push(block);
-                board = board + "<div class='block block_"+i + j +"'>" + i + ", " + j + "</div>"
+                board = board + "<div id='block_" + i + j + "' class='block'>" + i + ", " + j + "</div>"
             }
             board = board + "</div>";
         }
 
         gameField.innerHTML = board;
 
+        draw(shapeJ);
+
+    }
+
+    function draw(shape) {
+        for(var i = 0; i < shape.length; i++) {
+            blockid = "block_" + shape[i][0] +  shape[i][1];
+            console.log(blockid);
+            document.getElementById(blockid).setAttribute("class", "block active");
+        }
     }
 
     createGame();
