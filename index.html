@@ -73,28 +73,28 @@
         var rand = Math.floor(Math.random() * 7);
         currentShape = shapes[rand];
         currentColor = colors[rand];
-        draw(currentShape,currentColor);
+        //draw(currentShape,currentColor);
 
-        var start = window.setInterval(fall, 1000);
+        var start = window.setInterval(
+                function() {
+                    draw(currentShape,currentColor,count);
+                    if (count < rows) {
+                        count += 1;
+                    } else {
+                        count = 0;
+                    }
+                    console.log(count);
+                }, 1000);
 
     }
 
-    function draw(shape,color) {
+    function draw(shape,color,count) {
         for(var i = 0; i < shape.length; i++) {
-            blockid = "block_" + shape[i][0] +  shape[i][1];
+            blockid = "block_" + (shape[i][0] + count) +  shape[i][1];
+            console.log(shape[i][0] + count);
             classname = "block active " + color;
             document.getElementById(blockid).setAttribute("class", classname);
         }
-    }
-
-    function fall() {
-        if (count < rows) {
-            count += 1;
-        } else {
-            count = 0;
-        }
-        console.log(count);
-
     }
 
     createGame();
