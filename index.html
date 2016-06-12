@@ -88,7 +88,7 @@
     //when it is occupied by a tetramino that has reached the bottom and can't go anywhere, those blocks become locked to true
 
     function createBoard(rows,cols) {
-        gameField = document.getElementById("gamefield");
+        boardID = document.getElementById("gamefield");
         content = "";
         board = new Array;
 
@@ -103,7 +103,7 @@
             }
             content = content + "</div>";
         }
-        gameField.innerHTML = content;
+        boardID.innerHTML = content;
         console.log(board);
     }
 
