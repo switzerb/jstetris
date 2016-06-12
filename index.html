@@ -81,7 +81,7 @@
     var rand = Math.floor(Math.random() * 7);
 
     //create a new random tetramino
-    currentShape = tetraminos[rand];
+    currentTetramino = tetraminos[rand];
     linecount = 0;
 
     //initialize each block on content to locked = false
@@ -131,10 +131,10 @@
     function drop() {
         if (linecount < ROWS) {
             if (count == 0) {
-                linecount = draw(currentShape,count);
+                linecount = draw(currentTetramino,count);
             } else {
-                empty(currentShape, count-1);
-                linecount = draw(currentShape,count);
+                empty(currentTetramino, count-1);
+                linecount = draw(currentTetramino,count);
             }
             count += 1;
             console.log(linecount);
