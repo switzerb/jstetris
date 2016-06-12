@@ -45,38 +45,35 @@
     count = 0;
 
     //i,j,l,s,z,t,o
-    shapeI = [[0,0],[1,0],[2,0],[3,0]];
-    shapeJ = [[0,1],[1,1],[2,1],[2,0]];
-    shapeL = [[0,0],[1,0],[2,0],[2,1]];
-    shapeS = [[1,0],[1,1],[0,1],[0,2]];
-    shapeZ = [[0,0],[0,1],[1,1],[1,2]];
-    shapeT = [[0,0],[0,1],[0,2],[1,1]];
-    shapeO = [[0,0],[0,1],[1,0],[1,1]];
+    tetraminoI = {
+        shape: [[0,0],[1,0],[2,0],[3,0]],
+        color: "cyan"
+    };
+    tetraminoJ = {
+        shape: [[0,1],[1,1],[2,1],[2,0]],
+        color: "blue"
+    };
+    tetraminoL = {
+        shape: [[0,0],[1,0],[2,0],[2,1]],
+        color: "orange"
+    };
+    tetraminoS = {
+        shape: [[1,0],[1,1],[0,1],[0,2]],
+        color: "lime"
+    };
+    tetraminoZ = {
+        shape: [[0,0],[0,1],[1,1],[1,2]],
+        color: "red"
+    };
+    tetraminoT = {
+        shape: [[0,0],[0,1],[0,2],[1,1]],
+        color: "purple"
+    };
+    tetraminoO = {
+        shape: [[0,0],[0,1],[1,0],[1,1]],
+        color: "yellow"
+    };
 
-    function createGame() {
-        shapes = [shapeJ,shapeL,shapeI,shapeS,shapeZ,shapeO,shapeT];
-        colors = ["blue","orange","cyan","lime","red","yellow","purple"];
-        var rand = Math.floor(Math.random() * 7);
-        currentShape = shapes[rand];
-        currentColor = colors[rand];
-
-        var start = window.setInterval(
-                function() {
-                    if (count < ROWS) {
-                        if (count == 0) {
-                            draw(currentShape,currentColor,count);
-                        } else {
-                            draw(currentShape, "black", count-1);
-                            draw(currentShape,currentColor,count);
-                        }
-                        count += 1;
-                    } else {
-                        count = 0;
-                        window.clearInterval(start);
-                    }
-                }, 500);
-
-    }
 
     function createBoard(rows,cols) {
         gameField = document.getElementById("gamefield");
@@ -92,12 +89,45 @@
         }
         gameField.innerHTML = board;
     }
-    function draw(shape,color,count) {
-        for(var i = 0; i < shape.length; i++) {
-            x = (shape[i][0]) + count;
-            y = shape[i][1];
+
+    function createGame() {
+        tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
+        var rand = Math.floor(Math.random() * 7);
+        currentShape = tetraminos[rand];
+
+        var start = window.setInterval(
+                function() {
+                    if (count < ROWS) {
+                        if (count == 0) {
+                            draw(currentShape,count);
+                        } else {
+                            empty(currentShape, count-1);
+                            draw(currentShape,count);
+                        }
+                        count += 1;
+                    } else {
+                        count = 0;
+                    }
+                }, 500);
+
+    }
+
+    function draw(tetramino,count) {
+        for(var i = 0; i < tetramino.shape.length; i++) {
+            x = (tetramino.shape[i][0]) + count;
+            y = tetramino.shape[i][1];
             blockid = "block_" + x + "_" + y;
-            classname = "block active " + color;
+            classname = "block active " + tetramino.color;
+            document.getElementById(blockid).setAttribute("class", classname);
+        }
+    }
+
+    function empty(tetramino,count) {
+        for(var i = 0; i < tetramino.shape.length; i++) {
+            x = (tetramino.shape[i][0]) + count;
+            y = tetramino.shape[i][1];
+            blockid = "block_" + x + "_" + y;
+            classname = "block active black";
             document.getElementById(blockid).setAttribute("class", classname);
         }
     }
