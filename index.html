@@ -94,22 +94,22 @@
         tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
         var rand = Math.floor(Math.random() * 7);
         currentShape = tetraminos[rand];
+        linecount = 0;
 
         var start = window.setInterval(
                 function() {
-                    if (count < ROWS) {
+                    if (count < ROWS && linecount < ROWS) {
                         if (count == 0) {
-                            draw(currentShape,count);
+                            linecount = draw(currentShape,count);
                         } else {
                             empty(currentShape, count-1);
-                            draw(currentShape,count);
+                            linecount = draw(currentShape,count);
                         }
                         count += 1;
                     } else {
                         count = 0;
                     }
                 }, 500);
-
     }
 
     function draw(tetramino,count) {
@@ -120,6 +120,7 @@
             classname = "block active " + tetramino.color;
             document.getElementById(blockid).setAttribute("class", classname);
         }
+        return x;
     }
 
     function empty(tetramino,count) {
