@@ -84,19 +84,27 @@
     currentShape = tetraminos[rand];
     linecount = 0;
 
+    //initialize each block on content to locked = false
+    //when it is occupied by a tetramino that has reached the bottom and can't go anywhere, those blocks become locked to true
+
     function createBoard(rows,cols) {
         gameField = document.getElementById("gamefield");
-        board = "";
+        content = "";
+        board = new Array;
 
         for(var i = 0; i <= rows; i++) {
-            board = board + "<div>";
+            content = content + "<div>";
             for(var j = 0; j <= cols; j++) {
-                var block = [i,j];
-                board = board + "<div id='block_" + i + "_" + j + "' class='block'>" + i + ", " + j + "</div>"
+                var block = {};
+                block.coordinates = [i,j];
+                block.locked = false;
+                board.push(block);
+                content = content + "<div id='block_" + i + "_" + j + "' class='block'>" + i + ", " + j + "</div>"
             }
-            board = board + "</div>";
+            content = content + "</div>";
         }
-        gameField.innerHTML = board;
+        gameField.innerHTML = content;
+        console.log(board);
     }
 
     function draw(tetramino,count) {
