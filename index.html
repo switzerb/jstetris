@@ -1,7 +1,7 @@
 <html>
 <head>
     <style type="text/css">
-        #gamefield {
+        #board_container {
             text-align:center;
         }
         .block {
@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<div id="gamefield">Loading...</div>
+<div id="board_container">Loading...</div>
 
 <script type="application/javascript">
     ROWS = 20;
@@ -83,13 +83,14 @@
     //create a new random tetramino
     currentTetramino = tetraminos[rand];
     linecount = 0;
+    board = null;
 
     //initialize each block on content to locked = false
     //when it is occupied by a tetramino that has reached the bottom and can't go anywhere, those blocks become locked to true
 
     function createBoard(rows,cols) {
-        boardID = document.getElementById("gamefield");
-        content = "";
+        var boardID = document.getElementById("board_container");
+        var content = "";
         board = new Array;
 
         for(var i = 0; i <= rows; i++) {
