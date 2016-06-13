@@ -91,16 +91,14 @@
     function createBoard(rows,cols) {
         var boardID = document.getElementById("board_container");
         var content = "";
-        board = new Array;
+        board = [];
 
-        for(var i = 0; i <= rows; i++) {
+        for(var row = 0; row <= rows; row++) {
             content = content + "<div>";
-            for(var j = 0; j <= cols; j++) {
-                var block = {};
-                block.coordinates = [i,j];
-                block.locked = false;
-                board.push(block);
-                content = content + "<div id='block_" + i + "_" + j + "' class='block'>" + i + ", " + j + "</div>"
+            board[row] = [];
+            for(var col = 0; col <= cols; col++) {
+                board[row][col] = 0;
+                content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
             }
             content = content + "</div>";
         }
