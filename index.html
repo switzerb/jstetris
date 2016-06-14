@@ -124,7 +124,7 @@
         }
     }
 
-    function drop() {
+    function tick() {
         if (linecount < ROWS) {
             if (count == 0) {
                 linecount = draw(currentTetramino,count);
@@ -141,7 +141,7 @@
     }
 
     function createGame() {
-        var start = window.setInterval(drop, 100);
+        var start = window.setInterval(tick, 100);
     }
 
     createBoard(ROWS,COLS);
