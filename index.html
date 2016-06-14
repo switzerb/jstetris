@@ -93,7 +93,7 @@
             content = content + "<div>";
             board[row] = [];
             for(var col = 0; col <= cols; col++) {
-                board[row][col] = 0;
+                board[row][col] = false;
                 content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
             }
             content = content + "</div>";
@@ -107,7 +107,7 @@
             y = tetramino.shape[i][1];
             blockid = "block_" + x + "_" + y;
             classname = "block active " + tetramino.color;
-            board[x][y] = 1;
+            board[x][y] = true;
             document.getElementById(blockid).setAttribute("class", classname);
         }
         return x;
@@ -118,7 +118,7 @@
             x = (tetramino.shape[i][0]) + count;
             y = tetramino.shape[i][1];
             blockid = "block_" + x + "_" + y;
-            board[x][y] = 0;
+            board[x][y] = false;
             classname = "block active black";
             document.getElementById(blockid).setAttribute("class", classname);
         }
