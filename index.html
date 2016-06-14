@@ -103,22 +103,22 @@
 
     function draw(tetramino,count) {
         for(var i = 0; i < tetramino.shape.length; i++) {
-            x = (tetramino.shape[i][0]) + count;
-            y = tetramino.shape[i][1];
-            blockid = "block_" + x + "_" + y;
+            row = (tetramino.shape[i][0]) + count;
+            col = tetramino.shape[i][1];
+            blockid = "block_" + row + "_" + col;
             classname = "block active " + tetramino.color;
-            board[x][y] = true;
+            board[row][col] = true;
             document.getElementById(blockid).setAttribute("class", classname);
         }
-        return x;
+        return row;
     }
 
     function empty(tetramino,count) {
         for(var i = 0; i < tetramino.shape.length; i++) {
-            x = (tetramino.shape[i][0]) + count;
-            y = tetramino.shape[i][1];
-            blockid = "block_" + x + "_" + y;
-            board[x][y] = false;
+            row = (tetramino.shape[i][0]) + count;
+            col = tetramino.shape[i][1];
+            blockid = "block_" + row + "_" + col;
+            board[row][col] = false;
             classname = "block active black";
             document.getElementById(blockid).setAttribute("class", classname);
         }
