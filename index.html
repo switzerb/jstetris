@@ -74,19 +74,15 @@
         color: "yellow"
     };
 
-    //the array of all tetraminos
-    tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
-
-    //create a random number to pick a tetramino to drop
-    var rand = Math.floor(Math.random() * 7);
-
-    //create a new random tetramino
-    currentTetramino = tetraminos[rand];
+    currentTetramino = createTetramino();
     linecount = 0;
     board = null;
 
-    //initialize each block on content to locked = false
-    //when it is occupied by a tetramino that has reached the bottom and can't go anywhere, those blocks become locked to true
+    function createTetramino() {
+        tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
+        var rand = Math.floor(Math.random() * 7);
+        return tetraminos[rand];
+    }
 
     function createBoard(rows,cols) {
         var boardID = document.getElementById("board_container");
@@ -139,11 +135,13 @@
             count += 1;
         } else {
             count = 0;
+            linecount = 0;
+            currentTetramino = createTetramino();
         }
     }
 
     function createGame() {
-        var start = window.setInterval(drop, 500);
+        var start = window.setInterval(drop, 100);
     }
 
     createBoard(ROWS,COLS);
