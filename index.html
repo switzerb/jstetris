@@ -103,10 +103,10 @@
 
     function draw(tetramino,count) {
         for(var i = 0; i < tetramino.shape.length; i++) {
-            row = (tetramino.shape[i][0]) + count;
-            col = tetramino.shape[i][1];
-            blockid = "block_" + row + "_" + col;
-            classname = "block active " + tetramino.color;
+            var row = (tetramino.shape[i][0]) + count;
+            var col = tetramino.shape[i][1];
+            var blockid = "block_" + row + "_" + col;
+            var classname = "block active " + tetramino.color;
             board[row][col] = true;
             document.getElementById(blockid).setAttribute("class", classname);
         }
@@ -115,11 +115,11 @@
 
     function empty(tetramino,count) {
         for(var i = 0; i < tetramino.shape.length; i++) {
-            row = (tetramino.shape[i][0]) + count;
-            col = tetramino.shape[i][1];
-            blockid = "block_" + row + "_" + col;
+            var row = (tetramino.shape[i][0]) + count;
+            var col = tetramino.shape[i][1];
+            var blockid = "block_" + row + "_" + col;
+            var classname = "block active black";
             board[row][col] = false;
-            classname = "block active black";
             document.getElementById(blockid).setAttribute("class", classname);
         }
     }
