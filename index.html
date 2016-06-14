@@ -80,7 +80,7 @@
 
     function createTetramino() {
         tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
-        var rand = Math.floor(Math.random() * 7);
+        var rand = Math.floor(Math.random() * tetraminos.length);
         return tetraminos[rand];
     }
 
