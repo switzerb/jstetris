@@ -74,12 +74,12 @@
         color: "yellow"
     };
 
+    tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
     currentTetramino = createTetramino();
     linecount = 0;
     board = null;
 
     function createTetramino() {
-        tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
         var rand = Math.floor(Math.random() * tetraminos.length);
         return tetraminos[rand];
     }
