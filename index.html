@@ -111,6 +111,7 @@
             y = tetramino.shape[i][1];
             blockid = "block_" + x + "_" + y;
             classname = "block active " + tetramino.color;
+            board[x][y] = 1;
             document.getElementById(blockid).setAttribute("class", classname);
         }
         return x;
@@ -121,6 +122,7 @@
             x = (tetramino.shape[i][0]) + count;
             y = tetramino.shape[i][1];
             blockid = "block_" + x + "_" + y;
+            board[x][y] = 0;
             classname = "block active black";
             document.getElementById(blockid).setAttribute("class", classname);
         }
