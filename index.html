@@ -103,7 +103,7 @@
             content = content + "<div>";
             board[row] = [];
             for(var col = 0; col <= cols; col++) {
-                board[row][col] = false;
+                setBlock(row,col,false);
                 content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
             }
             content = content + "</div>";
@@ -118,10 +118,10 @@
             var blockid = "block_" + row + "_" + col;
             if(action == 'fill') {
                 var classname = "block active " + tetramino.color;
-                board[row][col] = true;
+                setBlock(row,col,true);
             } else {
                 var classname = "block active black";
-                board[row][col] = false;
+                setBlock(row,col,false);
             }
             document.getElementById(blockid).setAttribute("class", classname);
         }
