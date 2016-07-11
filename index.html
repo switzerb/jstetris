@@ -43,7 +43,7 @@
 <script type="application/javascript">
     ROWS = 20;
     COLS = 10;
-    count = 0;
+    increment = 0;
 
     //i,j,l,s,z,t,o
     tetraminoI = {
@@ -125,17 +125,19 @@
         //can it go there? if so, do it
         //if it can't go there, then drop a new piece
 
-
-        if (linecount < ROWS) {
-            if (count == 0) {
-                linecount = draw(currentTetramino,count,"fill");
+        //don't want to increment past the end of the board
+        if(increment < ROWS) {
+            //this is the top of the board
+            if (increment == 0) {
+                linecount = draw(currentTetramino,increment,"fill");
             } else {
-                draw(currentTetramino,count-1,"empty");
-                linecount = draw(currentTetramino,count,"fill");
+                draw(currentTetramino,increment-1,"empty");
+                linecount = draw(currentTetramino,increment,"fill");
             }
-            count += 1;
+            increment += 1;
         } else {
-            count = 0;
+            //drop a new piece on the board
+            increment = 0;
             linecount = 0;
             currentTetramino = createTetramino();
         }
