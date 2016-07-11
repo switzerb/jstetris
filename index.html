@@ -102,36 +102,33 @@
         boardID.innerHTML = content;
     }
 
-    function draw(tetramino,count) {
+    function draw(tetramino,count,action) {
         for(var i = 0; i < tetramino.shape.length; i++) {
             var row = (tetramino.shape[i][0]) + count;
             var col = tetramino.shape[i][1];
             var blockid = "block_" + row + "_" + col;
-            var classname = "block active " + tetramino.color;
-            board[row][col] = true;
+            if(action == 'fill') {
+                var classname = "block active " + tetramino.color;
+                board[row][col] = true;
+            } else {
+                var classname = "block active black";
+                board[row][col] = false;
+            }
             document.getElementById(blockid).setAttribute("class", classname);
+            console.log("col:",col);
+            console.log("row:",row);
+            console.log("value",board[row][col]);
         }
         return row;
-    }
-
-    function empty(tetramino,count) {
-        for(var i = 0; i < tetramino.shape.length; i++) {
-            var row = (tetramino.shape[i][0]) + count;
-            var col = tetramino.shape[i][1];
-            var blockid = "block_" + row + "_" + col;
-            var classname = "block active black";
-            board[row][col] = false;
-            document.getElementById(blockid).setAttribute("class", classname);
-        }
     }
 
     function tick() {
         if (linecount < ROWS) {
             if (count == 0) {
-                linecount = draw(currentTetramino,count);
+                linecount = draw(currentTetramino,count,"fill");
             } else {
-                empty(currentTetramino, count-1);
-                linecount = draw(currentTetramino,count);
+                draw(currentTetramino,count-1,"empty");
+                linecount = draw(currentTetramino,count,"fill");
             }
             count += 1;
         } else {
