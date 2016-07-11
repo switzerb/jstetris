@@ -47,7 +47,8 @@
 
     //i,j,l,s,z,t,o
     tetraminoI = {
-        shape: [[0,0],[1,0],[2,0],[3,0]],
+        shape: [
+            [0,0],[1,0],[2,0],[3,0]],
         color: "cyan"
     };
     tetraminoJ = {
@@ -79,6 +80,14 @@
     currentTetramino = createTetramino();
     linecount = 0;
     board = null;
+
+    function getBlock(row,col) {
+        return board[row][col];
+    }
+
+    function setBlock(row, col, value) {
+        board[row][col] = value;
+    }
 
     function createTetramino() {
         var rand = Math.floor(Math.random() * tetraminos.length);
@@ -120,6 +129,7 @@
     }
 
     function tick() {
+        debugger;
         //create piece
         //try to put the piece on the board
         //can it go there? if so, do it
@@ -130,11 +140,13 @@
             //this is the top of the board
             if (increment == 0) {
                 linecount = draw(currentTetramino,increment,"fill");
+
             } else {
                 draw(currentTetramino,increment-1,"empty");
                 linecount = draw(currentTetramino,increment,"fill");
             }
             increment += 1;
+            console.log(increment);
         } else {
             //drop a new piece on the board
             increment = 0;
