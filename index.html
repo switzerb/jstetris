@@ -115,14 +115,17 @@
                 board[row][col] = false;
             }
             document.getElementById(blockid).setAttribute("class", classname);
-            console.log("col:",col);
-            console.log("row:",row);
-            console.log("value",board[row][col]);
         }
         return row;
     }
 
     function tick() {
+        //create piece
+        //try to put the piece on the board
+        //can it go there? if so, do it
+        //if it can't go there, then drop a new piece
+
+
         if (linecount < ROWS) {
             if (count == 0) {
                 linecount = draw(currentTetramino,count,"fill");
