@@ -37,6 +37,7 @@
     </style>
 </head>
 <body>
+<a href="#" onclick="stopGame();">Stop Game</a>
 <div id="board_container">Loading...</div>
 
 <script type="application/javascript">
@@ -140,12 +141,12 @@
         }
     }
 
-    function createGame() {
-        var start = window.setInterval(tick, 100);
+    function stopGame() {
+        clearInterval(start);
     }
 
     createBoard(ROWS,COLS);
-    createGame();
+    var start = window.setInterval(tick, 100);
 
 </script>
 
