@@ -1,5 +1,6 @@
 <html>
 <head>
+    <script>setInterval(function() { console && console.log("hi brenna"); }, 20 * 1000);</script>
     <style type="text/css">
         #board_container {
             text-align: center;
@@ -100,10 +101,10 @@
         var content = "";
         board = [];
 
-        for (var row = 0; row <= rows; row++) {
+        for (var row = 0; row < rows; row++) {
             content = content + "<div>";
             board[row] = [];
-            for (var col = 0; col <= cols; col++) {
+            for (var col = 0; col < cols; col++) {
                 setBlock(row, col, false);
                 content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
             }
@@ -216,7 +217,7 @@
     }
 
     createBoard(ROWS, COLS);
-    var start = window.setInterval(tick, 500);
+    var start = window.setInterval(tick, 100);
 
 </script>
 
