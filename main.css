@@ -1,3 +1,41 @@
 #board_container {
     border: 1px solid black;
+    text-align: center;
+}
+.block {
+    border: 1px solid slategray;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    font-size: 8px;
+    color: white;
+    background-color: black;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.cyan {
+    background-color: cyan;
+}
+
+.lime {
+    background-color: lime;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
 }
