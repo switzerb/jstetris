@@ -52,6 +52,9 @@
     ROWS = 20;
     COLS = 10;
     increment = 0;
+    activeTetramino = createTetramino();
+    linecount = 0;
+    board = null;
 
     tetraminoTemplates = [
         {
@@ -92,9 +95,22 @@
 
     ];
 
-    activeTetramino = createTetramino();
-    linecount = 0;
-    board = null;
+    function createBoard(rows, cols) {
+        var boardID = document.getElementById("board_container");
+        var content = "";
+        board = [];
+
+        for (var row = 0; row <= rows; row++) {
+            content = content + "<div>";
+            board[row] = [];
+            for (var col = 0; col <= cols; col++) {
+                setBlock(row, col, false);
+                content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
+            }
+            content = content + "</div>";
+        }
+        boardID.innerHTML = content;
+    }
 
     function getBlock(row, col) {
         return board[row][col];
@@ -115,23 +131,6 @@
             };
         }
         return copy;
-    }
-
-    function createBoard(rows, cols) {
-        var boardID = document.getElementById("board_container");
-        var content = "";
-        board = [];
-
-        for (var row = 0; row <= rows; row++) {
-            content = content + "<div>";
-            board[row] = [];
-            for (var col = 0; col <= cols; col++) {
-                setBlock(row, col, false);
-                content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
-            }
-            content = content + "</div>";
-        }
-        boardID.innerHTML = content;
     }
 
     function draw(tetramino, count, action) {
@@ -156,6 +155,8 @@
         //try to put the piece on the board
         //can it go there? if so, do it
         //if it can't go there, then drop a new piece
+
+
 
         //don't want to increment past the end of the board
         if (increment < ROWS) {
