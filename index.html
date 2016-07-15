@@ -161,7 +161,7 @@
         return true;
     }
 
-    function move(tetramino,r,c) {
+    function move(tetramino,r) {
         draw(tetramino,"empty");
         for (var i = 0; i < tetramino.shape.length; i++) {
             tetramino.shape[i][0] = tetramino.shape[i][0] + r;
