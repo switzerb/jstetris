@@ -52,7 +52,7 @@
     ROWS = 20;
     COLS = 10;
     increment = 0;
-    activeTetramino = createTetramino();
+    activeTetramino = null;
     linecount = 0;
     board = null;
 
@@ -150,13 +150,35 @@
         return row;
     }
 
+    function canMove(tetramino) {
+        return false;
+    }
+
+    function move(tetramino) {
+    }
+
     function tick() {
-        //create piece
         //try to put the piece on the board
-        //can it go there? if so, do it
         //if it can't go there, then drop a new piece
 
+        //if there is no tetramino on the board, create one
+        if (activeTetramino == null) {
+            activeTetramino = createTetramino();
 
+            //if row is 0 and it can't move, game is over
+//            stopGame();
+//            console.log("game over!");
+
+            //can it move?
+            if(canMove(activeTetramino)){
+                //yes, move it
+                move(activeTetramino);
+            } else {
+                //no, drop a new tetramino
+                activeTetramino = createTetramino();
+            }
+
+        }
 
         //don't want to increment past the end of the board
         if (increment < ROWS) {
