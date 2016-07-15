@@ -2,8 +2,9 @@
 <head>
     <style type="text/css">
         #board_container {
-            text-align:center;
+            text-align: center;
         }
+
         .block {
             border: 1px solid slategray;
             width: 30px;
@@ -13,24 +14,31 @@
             color: white;
             background-color: black;
         }
+
         .orange {
             background-color: orange;
         }
+
         .cyan {
             background-color: cyan;
         }
+
         .lime {
             background-color: lime;
         }
+
         .purple {
             background-color: purple;
         }
+
         .blue {
             background-color: blue;
         }
+
         .red {
             background-color: red;
         }
+
         .yellow {
             background-color: yellow;
         }
@@ -45,43 +53,53 @@
     COLS = 10;
     increment = 0;
 
-    //i,j,l,s,z,t,o
-    tetraminoI = {
-        shape: [
-            [0,0],[1,0],[2,0],[3,0]],
-        color: "cyan"
-    };
-    tetraminoJ = {
-        shape: [[0,1],[1,1],[2,1],[2,0]],
-        color: "blue"
-    };
-    tetraminoL = {
-        shape: [[0,0],[1,0],[2,0],[2,1]],
-        color: "orange"
-    };
-    tetraminoS = {
-        shape: [[1,0],[1,1],[0,1],[0,2]],
-        color: "lime"
-    };
-    tetraminoZ = {
-        shape: [[0,0],[0,1],[1,1],[1,2]],
-        color: "red"
-    };
-    tetraminoT = {
-        shape: [[0,0],[0,1],[0,2],[1,1]],
-        color: "purple"
-    };
-    tetraminoO = {
-        shape: [[0,0],[0,1],[1,0],[1,1]],
-        color: "yellow"
-    };
+    tetraminoTemplates = [
+        {
+            name: "I",
+            shape: [[0, 0], [1, 0], [2, 0], [3, 0]],
+            color: "cyan"
+        },
+        {
+            name: "J",
+            shape: [[0, 1], [1, 1], [2, 1], [2, 0]],
+            color: "blue"
+        },
+        {
+            name: "L",
+            shape: [[0, 0], [1, 0], [2, 0], [2, 1]],
+            color: "orange"
+        },
+        {
+            name: "S",
+            shape: [[1, 0], [1, 1], [0, 1], [0, 2]],
+            color: "lime"
+        },
+        {
+            name: "Z",
+            shape: [[0, 0], [0, 1], [1, 1], [1, 2]],
+            color: "red"
+        },
+        {
+            name: "T",
+            shape: [[0, 0], [0, 1], [0, 2], [1, 1]],
+            color: "purple"
+        },
+        {
+            name: "O",
+            shape: [[0, 0], [0, 1], [1, 0], [1, 1]],
+            color: "yellow"
+        }
 
-    tetraminos = [tetraminoJ,tetraminoL,tetraminoI,tetraminoS,tetraminoZ,tetraminoO,tetraminoT];
+    ];
+
+    //i,j,l,s,z,t,o
+
+    tetraminos = [tetraminoJ, tetraminoL, tetraminoI, tetraminoS, tetraminoZ, tetraminoO, tetraminoT];
     currentTetramino = createTetramino();
     linecount = 0;
     board = null;
 
-    function getBlock(row,col) {
+    function getBlock(row, col) {
         return board[row][col];
     }
 
@@ -94,16 +112,16 @@
         return tetraminos[rand];
     }
 
-    function createBoard(rows,cols) {
+    function createBoard(rows, cols) {
         var boardID = document.getElementById("board_container");
         var content = "";
         board = [];
 
-        for(var row = 0; row <= rows; row++) {
+        for (var row = 0; row <= rows; row++) {
             content = content + "<div>";
             board[row] = [];
-            for(var col = 0; col <= cols; col++) {
-                setBlock(row,col,false);
+            for (var col = 0; col <= cols; col++) {
+                setBlock(row, col, false);
                 content = content + "<div id='block_" + row + "_" + col + "' class='block'>" + row + ", " + col + "</div>"
             }
             content = content + "</div>";
@@ -111,17 +129,17 @@
         boardID.innerHTML = content;
     }
 
-    function draw(tetramino,count,action) {
-        for(var i = 0; i < tetramino.shape.length; i++) {
+    function draw(tetramino, count, action) {
+        for (var i = 0; i < tetramino.shape.length; i++) {
             var row = (tetramino.shape[i][0]) + count;
             var col = tetramino.shape[i][1];
             var blockid = "block_" + row + "_" + col;
-            if(action == 'fill') {
+            if (action == 'fill') {
                 var classname = "block active " + tetramino.color;
-                setBlock(row,col,true);
+                setBlock(row, col, true);
             } else {
                 var classname = "block active black";
-                setBlock(row,col,false);
+                setBlock(row, col, false);
             }
             document.getElementById(blockid).setAttribute("class", classname);
         }
@@ -136,14 +154,14 @@
         //if it can't go there, then drop a new piece
 
         //don't want to increment past the end of the board
-        if(increment < ROWS) {
+        if (increment < ROWS) {
             //this is the top of the board
             if (increment == 0) {
-                linecount = draw(currentTetramino,increment,"fill");
+                linecount = draw(currentTetramino, increment, "fill");
 
             } else {
-                draw(currentTetramino,increment-1,"empty");
-                linecount = draw(currentTetramino,increment,"fill");
+                draw(currentTetramino, increment - 1, "empty");
+                linecount = draw(currentTetramino, increment, "fill");
             }
             increment += 1;
             console.log(increment);
@@ -159,7 +177,7 @@
         clearInterval(start);
     }
 
-    createBoard(ROWS,COLS);
+    createBoard(ROWS, COLS);
     var start = window.setInterval(tick, 100);
 
 </script>
