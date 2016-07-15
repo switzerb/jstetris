@@ -92,10 +92,8 @@
 
     ];
 
-    //i,j,l,s,z,t,o
-
-    tetraminos = [tetraminoJ, tetraminoL, tetraminoI, tetraminoS, tetraminoZ, tetraminoO, tetraminoT];
-    currentTetramino = createTetramino();
+    activeTetramino = createTetramino();
+    console.log(activeTetramino);
     linecount = 0;
     board = null;
 
@@ -108,8 +106,16 @@
     }
 
     function createTetramino() {
-        var rand = Math.floor(Math.random() * tetraminos.length);
-        return tetraminos[rand];
+        var rand = Math.floor(Math.random() * tetraminoTemplates.length);
+        var template = tetraminoTemplates[rand];
+        var copy = {};
+
+        for (var item in template) {
+            if(template.hasOwnProperty(item)){
+                copy[item] = template[item];
+            };
+        }
+        return copy;
     }
 
     function createBoard(rows, cols) {
@@ -147,7 +153,6 @@
     }
 
     function tick() {
-        debugger;
         //create piece
         //try to put the piece on the board
         //can it go there? if so, do it
@@ -157,11 +162,11 @@
         if (increment < ROWS) {
             //this is the top of the board
             if (increment == 0) {
-                linecount = draw(currentTetramino, increment, "fill");
+                linecount = draw(activeTetramino, increment, "fill");
 
             } else {
-                draw(currentTetramino, increment - 1, "empty");
-                linecount = draw(currentTetramino, increment, "fill");
+                draw(activeTetramino, increment - 1, "empty");
+                linecount = draw(activeTetramino, increment, "fill");
             }
             increment += 1;
             console.log(increment);
@@ -169,7 +174,7 @@
             //drop a new piece on the board
             increment = 0;
             linecount = 0;
-            currentTetramino = createTetramino();
+            activeTetramino = createTetramino();
         }
     }
 
