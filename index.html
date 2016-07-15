@@ -85,7 +85,7 @@
         for (var item in template) {
             if(template.hasOwnProperty(item)){
                 copy[item] = template[item];
-            };
+            }
         }
         return copy;
     }
@@ -111,7 +111,7 @@
             // can't move
         //else return true
         for(var i = 0; i < tetramino.shape.length;i++){
-            if(tetramino.shape[i][0] >= ROWS) {
+            if(tetramino.shape[i][0] >= ROWS-1) {
              return false;
             }
         }
@@ -137,35 +137,11 @@
             draw(activeTetramino,"fill");
         } else {
             draw(activeTetramino,"empty");
-            console.log(activeTetramino);
-            debugger;
             if(canMove(activeTetramino)){
                 move(activeTetramino,1,0);
                 draw(activeTetramino,"fill");
             }
         }
-//        if (activeTetramino == null) {
-//            activeTetramino = createTetramino();
-//            draw(activeTetramino, "fill");
-//            //if row is 0 and it can't move, game is over
-////            stopGame();
-////            console.log("game over!");
-//
-//            //can it move?
-//            if(canMove(activeTetramino)){
-//                //yes, move it
-//                draw(activeTetramino, "empty");
-//                move(activeTetramino);
-//                draw(activeTetramino, "fill");
-//            } else {
-//                //no, lock the current tetramino
-//                place(activeTetramino);
-//                // and drop a new tetramino
-//                activeTetramino = createTetramino();
-//            }
-//
-//        }
-
     }
 
     function stopGame() {
@@ -174,7 +150,6 @@
 
     createBoard(ROWS, COLS);
     var start = window.setInterval(tick, 100);
-
 </script>
 
 </body>
