@@ -133,9 +133,9 @@
         return copy;
     }
 
-    function draw(tetramino, count, action) {
+    function draw(tetramino, action) {
         for (var i = 0; i < tetramino.shape.length; i++) {
-            var row = (tetramino.shape[i][0]) + count;
+            var row = (tetramino.shape[i][0]);
             var col = tetramino.shape[i][1];
             var blockid = "block_" + row + "_" + col;
             if (action == 'fill') {
@@ -147,57 +147,59 @@
             }
             document.getElementById(blockid).setAttribute("class", classname);
         }
-        return row;
     }
 
     function canMove(tetramino) {
+        //if the block is locked or it's the end of the board
+            // can't move
+        //else return true
         return false;
     }
 
-    function move(tetramino) {
+    function move(tetramino,r,c) {
+        draw(tetramino,"empty");
+        for (var i = 0; i < tetramino.shape.length; i++) {
+            tetramino.shape[i][0] = tetramino.shape[i][0] + r;
+        }
+    }
+
+    function place(tetramino) {
+
     }
 
     function tick() {
-        //try to put the piece on the board
-        //if it can't go there, then drop a new piece
 
         //if there is no tetramino on the board, create one
         if (activeTetramino == null) {
             activeTetramino = createTetramino();
-
-            //if row is 0 and it can't move, game is over
-//            stopGame();
-//            console.log("game over!");
-
-            //can it move?
-            if(canMove(activeTetramino)){
-                //yes, move it
-                move(activeTetramino);
-            } else {
-                //no, drop a new tetramino
-                activeTetramino = createTetramino();
+            draw(activeTetramino,"fill");
+            while(activeTetramino.shape[3][0] < ROWS) {
+                move(activeTetramino,1,0);
+                draw(activeTetramino,"fill");
             }
-
         }
+//        if (activeTetramino == null) {
+//            activeTetramino = createTetramino();
+//            draw(activeTetramino, "fill");
+//            //if row is 0 and it can't move, game is over
+////            stopGame();
+////            console.log("game over!");
+//
+//            //can it move?
+//            if(canMove(activeTetramino)){
+//                //yes, move it
+//                draw(activeTetramino, "empty");
+//                move(activeTetramino);
+//                draw(activeTetramino, "fill");
+//            } else {
+//                //no, lock the current tetramino
+//                place(activeTetramino);
+//                // and drop a new tetramino
+//                activeTetramino = createTetramino();
+//            }
+//
+//        }
 
-        //don't want to increment past the end of the board
-        if (increment < ROWS) {
-            //this is the top of the board
-            if (increment == 0) {
-                linecount = draw(activeTetramino, increment, "fill");
-
-            } else {
-                draw(activeTetramino, increment - 1, "empty");
-                linecount = draw(activeTetramino, increment, "fill");
-            }
-            increment += 1;
-            console.log(increment);
-        } else {
-            //drop a new piece on the board
-            increment = 0;
-            linecount = 0;
-            activeTetramino = createTetramino();
-        }
     }
 
     function stopGame() {
@@ -205,7 +207,7 @@
     }
 
     createBoard(ROWS, COLS);
-    var start = window.setInterval(tick, 100);
+    var start = window.setInterval(tick, 500);
 
 </script>
 
