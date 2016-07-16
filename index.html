@@ -135,7 +135,8 @@
         }
     }
 
-    function clearLine(row) {
+    function clearRow(row) {
+        console.log(row);
         //for each row that is this row + 1 and above
          //first
         //copy row - 1 to row
@@ -143,9 +144,23 @@
            //copy row - 2 to row - 1
     }
 
+    function checkBoard() {
+        for(var row = 0; row < board.length; row++) {
+            var flag = true;
+            for(var col = 0;col < board[row].length; col++){
+                if(getBlock(row,col) == false){
+                    flag = false;
+                }
+            }
+            if(flag == true){
+                clearRow(row);
+            }
+        }
+    }
+
     function tick() {
             var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-            var templateTetramino = tetraminoTemplates[rand];
+            var templateTetramino = tetraminoTemplates[6];
 
             //debugger;
             if (activeTetramino == null) {
@@ -156,9 +171,7 @@
                 move(activeTetramino,1,0);
             } else {
                 place(activeTetramino);
-                //check each row in board
-                  //does it have a filled block on every column?
-                    //yes clearLine()
+                checkBoard();
                 activeTetramino = new Tetramino(templateTetramino);
                 if(!canMove(activeTetramino,"down")){
                     console.log("game over");
