@@ -82,28 +82,21 @@
         var templateTetramino = tetraminoTemplates[rand];
         var cloneTetramino = {};
 
-        for (var item in templateTetramino) {
-            if (templateTetramino.hasOwnProperty(item)) {
+        cloneTetramino.name = templateTetramino.name;
+        cloneTetramino.color = templateTetramino.color;
 
-                if (templateTetramino[item] instanceof Array) {
+        var temp = [];
 
-                    var temp = [];
+        for(var i = 0; i < templateTetramino.shape.length;i++) {
 
-                    for(var i = 0; i < templateTetramino[item].length;i++) {
-
-                        var temp2 = [];
-                        for (var j = 0; j < templateTetramino[item][i].length; j++) {
-                            temp2[j] = templateTetramino[item][i][j];
-                        }
-                        temp[i] = temp2;
-                    }
-                    cloneTetramino[item] = temp;
-
-                } else {
-                    cloneTetramino[item] = templateTetramino[item];
-                }
+            var temp2 = [];
+            for (var j = 0; j < templateTetramino.shape[i].length; j++) {
+                temp2[j] = templateTetramino.shape[i][j];
             }
+            temp[i] = temp2;
         }
+        cloneTetramino.shape = temp;
+
         return cloneTetramino;
     }
 
