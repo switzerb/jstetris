@@ -142,7 +142,10 @@
             } else {
                 place(activeTetramino);
                 activeTetramino = cloneTetramino();
-                console.log(activeTetramino);
+                if(!canMove(activeTetramino,"down")){
+                    console.log("game over");
+                    stopGame();
+                }
             }
             draw(activeTetramino,"fill");
     }
