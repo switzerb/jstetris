@@ -79,12 +79,29 @@
 
     function createTetramino() {
         var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-        var template = tetraminoTemplates[rand];
+        var tetramino = tetraminoTemplates[rand];
         var copy = {};
 
-        for (var item in template) {
-            if(template.hasOwnProperty(item)){
-                copy[item] = template[item];
+        for (var item in tetramino) {
+            if (tetramino.hasOwnProperty(item)) {
+
+                if (tetramino[item] instanceof Array) {
+
+                    var temp = [];
+
+                    for(var i = 0; i < tetramino[item].length;i++) {
+
+                        var temp2 = [];
+                        for (var j = 0; j < tetramino[item][i].length; j++) {
+                            temp2[j] = tetramino[item][i][j];
+                        }
+                        temp[i] = temp2;
+                    }
+                    copy[item] = temp;
+
+                } else {
+                    copy[item] = tetramino[item];
+                }
             }
         }
         return copy;
@@ -126,18 +143,17 @@
     }
 
     function tick() {
-
-        //if there is no tetramino on the board, create one
-        if (activeTetramino == null) {
-            activeTetramino = createTetramino();
-            draw(activeTetramino,"fill");
-        } else {
-            draw(activeTetramino,"empty");
-            if(canMove(activeTetramino)){
-                move(activeTetramino,1,0);
-                draw(activeTetramino,"fill");
+            //debugger;
+            if (activeTetramino == null) {
+                activeTetramino = createTetramino();
             }
-        }
+            if (canMove(activeTetramino,1)) {
+                move(activeTetramino,1);
+            } else {
+                activeTetramino = createTetramino();
+                console.log(activeTetramino);
+            }
+            draw(activeTetramino,"fill");
     }
 
     function stopGame() {
