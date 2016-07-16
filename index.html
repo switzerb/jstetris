@@ -13,6 +13,17 @@
     activeTetramino = null;
     board = null;
 
+    function Tetramino(template) {
+        this.name = template.name;
+        this.color = template.color;
+        this.shape = [];
+
+        for(var i = 0; i < template.shape.length;i++) {
+            this.shape[i] = template.shape[i].slice(0);
+        }
+
+    }
+
     tetraminoTemplates = [
         {
             name: "I",
@@ -77,23 +88,6 @@
         board[row][col] = value;
     }
 
-    function cloneTetramino() {
-        var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-        var templateTetramino = tetraminoTemplates[rand];
-        var clone = {};
-
-        clone.name = templateTetramino.name;
-        clone.color = templateTetramino.color;
-
-        var cloneshape = [];
-        for(var i = 0; i < templateTetramino.shape.length;i++) {
-            cloneshape[i] = templateTetramino.shape[i].slice(0);
-        }
-        clone.shape = cloneshape;
-
-        return clone;
-    }
-
     function draw(tetramino, action) {
         for (var i = 0; i < tetramino.shape.length; i++) {
             var row = (tetramino.shape[i][0]);
@@ -133,15 +127,19 @@
     }
 
     function tick() {
+            var rand = Math.floor(Math.random() * tetraminoTemplates.length);
+            var templateTetramino = tetraminoTemplates[rand];
+
             //debugger;
             if (activeTetramino == null) {
-                activeTetramino = cloneTetramino();
+
+                activeTetramino = new Tetramino(templateTetramino);
             }
             if (canMove(activeTetramino,"down")) {
                 move(activeTetramino,1);
             } else {
                 place(activeTetramino);
-                activeTetramino = cloneTetramino();
+                activeTetramino = new Tetramino(templateTetramino);
                 if(!canMove(activeTetramino,"down")){
                     console.log("game over");
                     stopGame();
