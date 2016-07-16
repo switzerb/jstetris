@@ -80,10 +80,10 @@
     function cloneTetramino() {
         var rand = Math.floor(Math.random() * tetraminoTemplates.length);
         var templateTetramino = tetraminoTemplates[rand];
-        var cloneTetramino = {};
+        var clone = {};
 
-        cloneTetramino.name = templateTetramino.name;
-        cloneTetramino.color = templateTetramino.color;
+        clone.name = templateTetramino.name;
+        clone.color = templateTetramino.color;
 
         var cloneshape = [];
 
@@ -95,9 +95,9 @@
             }
             cloneshape[i] = coordinates;
         }
-        cloneTetramino.shape = cloneshape;
+        clone.shape = cloneshape;
 
-        return cloneTetramino;
+        return clone;
     }
 
     function draw(tetramino, action) {
