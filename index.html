@@ -158,7 +158,11 @@
     document.addEventListener("keydown", keyboard);
 
     function keyboard(e) {
-        console.log(e);
+        if(e.key == "ArrowLeft"){
+            console.log("move me left!")
+        } else if (e.key == "ArrowRight") {
+            console.log("move me right!")
+        }
     }
 
 </script>
