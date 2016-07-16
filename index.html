@@ -85,17 +85,17 @@
         cloneTetramino.name = templateTetramino.name;
         cloneTetramino.color = templateTetramino.color;
 
-        var temp = [];
+        var cloneshape = [];
 
         for(var i = 0; i < templateTetramino.shape.length;i++) {
 
-            var temp2 = [];
+            var coordinates = [];
             for (var j = 0; j < templateTetramino.shape[i].length; j++) {
-                temp2[j] = templateTetramino.shape[i][j];
+                coordinates[j] = templateTetramino.shape[i][j];
             }
-            temp[i] = temp2;
+            cloneshape[i] = coordinates;
         }
-        cloneTetramino.shape = temp;
+        cloneTetramino.shape = cloneshape;
 
         return cloneTetramino;
     }
