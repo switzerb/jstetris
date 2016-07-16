@@ -109,9 +109,13 @@
                     return false;
                 }
             } else if (direction == "right") {
-
+                if((tetramino.shape[i][1] >= COLS-1) || (getBlock(tetramino.shape[i][0], tetramino.shape[i][1]+1) == true)) {
+                    return false;
+                }
             } else if (direction == "left") {
-
+                if((tetramino.shape[i][1] <= 0) || (getBlock(tetramino.shape[i][1], tetramino.shape[i][1]-1) == true)) {
+                    return false;
+                }
             }
         }
         return true;
@@ -164,9 +168,13 @@
 
     function keyboard(e) {
         if(e.key == "ArrowLeft"){
-            move(activeTetramino,0,-1);
+            if(canMove(activeTetramino,"left")){
+                move(activeTetramino,0,-1);
+            }
         } else if (e.key == "ArrowRight") {
-            move(activeTetramino,0,1);
+            if(canMove(activeTetramino,"right")) {
+                move(activeTetramino, 0, 1);
+            }
         }
     }
 
