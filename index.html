@@ -80,7 +80,7 @@
     function cloneTetramino() {
         var rand = Math.floor(Math.random() * tetraminoTemplates.length);
         var templateTetramino = tetraminoTemplates[rand];
-        var copy = {};
+        var cloneTetramino = {};
 
         for (var item in templateTetramino) {
             if (templateTetramino.hasOwnProperty(item)) {
@@ -97,14 +97,14 @@
                         }
                         temp[i] = temp2;
                     }
-                    copy[item] = temp;
+                    cloneTetramino[item] = temp;
 
                 } else {
-                    copy[item] = templateTetramino[item];
+                    cloneTetramino[item] = templateTetramino[item];
                 }
             }
         }
-        return copy;
+        return cloneTetramino;
     }
 
     function draw(tetramino, action) {
