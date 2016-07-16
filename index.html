@@ -79,28 +79,28 @@
 
     function cloneTetramino() {
         var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-        var tetramino = tetraminoTemplates[rand];
+        var templateTetramino = tetraminoTemplates[rand];
         var copy = {};
 
-        for (var item in tetramino) {
-            if (tetramino.hasOwnProperty(item)) {
+        for (var item in templateTetramino) {
+            if (templateTetramino.hasOwnProperty(item)) {
 
-                if (tetramino[item] instanceof Array) {
+                if (templateTetramino[item] instanceof Array) {
 
                     var temp = [];
 
-                    for(var i = 0; i < tetramino[item].length;i++) {
+                    for(var i = 0; i < templateTetramino[item].length;i++) {
 
                         var temp2 = [];
-                        for (var j = 0; j < tetramino[item][i].length; j++) {
-                            temp2[j] = tetramino[item][i][j];
+                        for (var j = 0; j < templateTetramino[item][i].length; j++) {
+                            temp2[j] = templateTetramino[item][i][j];
                         }
                         temp[i] = temp2;
                     }
                     copy[item] = temp;
 
                 } else {
-                    copy[item] = tetramino[item];
+                    copy[item] = templateTetramino[item];
                 }
             }
         }
