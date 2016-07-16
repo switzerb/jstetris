@@ -123,7 +123,7 @@
 
     function canMove(tetramino) {
         for(var i = 0; i < tetramino.shape.length;i++){
-            if((tetramino.shape[i][0] >= ROWS-1) || (getBlock(tetramino.shape[i][0], tetramino.shape[i][1]) == true)) {
+            if((tetramino.shape[i][0] >= ROWS-1) || (getBlock(tetramino.shape[i][0]+1, tetramino.shape[i][1]) == true)) {
              return false;
             }
         }
