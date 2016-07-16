@@ -122,11 +122,8 @@
     }
 
     function canMove(tetramino) {
-        //if the block is locked or it's the end of the board
-            // can't move
-        //else return true
         for(var i = 0; i < tetramino.shape.length;i++){
-            if(tetramino.shape[i][0] >= ROWS-1) {
+            if((tetramino.shape[i][0] >= ROWS-1) || (getBlock(tetramino.shape[i][0], tetramino.shape[i][1]) == true)) {
              return false;
             }
         }
@@ -142,7 +139,7 @@
 
     function place(tetramino) {
         for (var i = 0; i < tetramino.shape.length; i++) {
-            setBlock(tetramino.shape[i][0],tetramino.shape[i][1],false);
+            setBlock(tetramino.shape[i][0],tetramino.shape[i][1],true);
         }
     }
 
