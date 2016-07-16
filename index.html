@@ -114,10 +114,8 @@
             var blockid = "block_" + row + "_" + col;
             if (action == 'fill') {
                 var classname = "block active " + tetramino.color;
-                setBlock(row, col, true);
             } else {
                 var classname = "block active black";
-                setBlock(row, col, false);
             }
             document.getElementById(blockid).setAttribute("class", classname);
         }
@@ -142,6 +140,12 @@
         }
     }
 
+    function place(tetramino) {
+        for (var i = 0; i < tetramino.shape.length; i++) {
+            setBlock(tetramino.shape[i][0],tetramino.shape[i][1],false);
+        }
+    }
+
     function tick() {
             //debugger;
             if (activeTetramino == null) {
@@ -150,6 +154,7 @@
             if (canMove(activeTetramino,1)) {
                 move(activeTetramino,1);
             } else {
+                place(activeTetramino);
                 activeTetramino = createTetramino();
                 console.log(activeTetramino);
             }
