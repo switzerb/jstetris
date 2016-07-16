@@ -77,7 +77,7 @@
         board[row][col] = value;
     }
 
-    function createTetramino() {
+    function cloneTetramino() {
         var rand = Math.floor(Math.random() * tetraminoTemplates.length);
         var tetramino = tetraminoTemplates[rand];
         var copy = {};
@@ -148,13 +148,13 @@
     function tick() {
             //debugger;
             if (activeTetramino == null) {
-                activeTetramino = createTetramino();
+                activeTetramino = cloneTetramino();
             }
             if (canMove(activeTetramino,"down")) {
                 move(activeTetramino,1);
             } else {
                 place(activeTetramino);
-                activeTetramino = createTetramino();
+                activeTetramino = cloneTetramino();
                 console.log(activeTetramino);
             }
             draw(activeTetramino,"fill");
