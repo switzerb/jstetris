@@ -86,14 +86,8 @@
         clone.color = templateTetramino.color;
 
         var cloneshape = [];
-
         for(var i = 0; i < templateTetramino.shape.length;i++) {
-
-            var coordinates = [];
-            for (var j = 0; j < templateTetramino.shape[i].length; j++) {
-                coordinates[j] = templateTetramino.shape[i][j];
-            }
-            cloneshape[i] = coordinates;
+            cloneshape[i] = templateTetramino.shape[i].slice(0);
         }
         clone.shape = cloneshape;
 
