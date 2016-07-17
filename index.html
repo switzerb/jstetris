@@ -27,6 +27,15 @@
         }
     }
 
+    Tetramino.prototype.move = function (r,c) {
+        draw(this,"empty");
+        for (var i = 0; i < this.shapes[0].length; i++) {
+            this.shapes[0][i][0] = this.shapes[0][i][0] + r;
+            this.shapes[0][i][1] = this.shapes[0][i][1] + c;
+        }
+    };
+
+
     function createBoard(rows, cols) {
         var boardID = document.getElementById("board_container");
         var content = "";
@@ -85,14 +94,6 @@
         return true;
     }
 
-    function move(tetramino,r,c) {
-        draw(tetramino,"empty");
-        for (var i = 0; i < tetramino.shapes[0].length; i++) {
-            tetramino.shapes[0][i][0] = tetramino.shapes[0][i][0] + r;
-            tetramino.shapes[0][i][1] = tetramino.shapes[0][i][1] + c;
-        }
-    }
-
     function place(tetramino) {
         draw(tetramino,"fill");
         for (var i = 0; i < tetramino.shapes[0].length; i++) {
@@ -149,7 +150,7 @@
                 activeTetramino = new Tetramino(templateTetramino);
             }
             if (canMove(activeTetramino,"down")) {
-                move(activeTetramino,1,0);
+                activeTetramino.move(1,0);
             } else {
                 place(activeTetramino);
                 checkBoard();
@@ -174,11 +175,11 @@
     function keyboard(e) {
         if(e.key == "ArrowLeft"){
             if(canMove(activeTetramino,"left")){
-                move(activeTetramino,0,-1);
+                activeTetramino.move(0,-1);
             }
         } else if (e.key == "ArrowRight") {
             if(canMove(activeTetramino,"right")) {
-                move(activeTetramino, 0, 1);
+                activeTetramino.move(0, 1);
             }
         } else if (e.key == "ArrowUp") {
             console.log("rotate left");
