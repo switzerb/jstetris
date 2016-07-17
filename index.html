@@ -27,6 +27,8 @@
         }
     }
 
+    // parameter: takes a row and a column to indicate the coordinates of where the tetramino is moving
+    // returns: void
     Tetramino.prototype.move = function (r,c) {
         draw(this,"empty");
         for (var i = 0; i < this.shapes[0].length; i++) {
