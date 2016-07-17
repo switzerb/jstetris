@@ -87,6 +87,7 @@
 
             if (activeTetramino == null) {
                 activeTetramino = new Tetramino(templateTetramino);
+                activeTetramino.draw("fill");
             }
             if (activeTetramino.canMove("down")) {
                 activeTetramino.move(1,0);
