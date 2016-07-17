@@ -27,6 +27,7 @@
         }
     }
 
+    // functionality: moves the tetramino one step down, right or left
     // parameter: takes a row and a column to indicate the coordinates of where the tetramino is moving
     // returns: void
     Tetramino.prototype.move = function (r,c) {
@@ -37,6 +38,7 @@
         }
     };
 
+    // functionality: checks to see if a tetramino can move down, right or left
     // parameter: takes a direction that the tetramino is trying to move
     // returns: boolean that indicates whether the tetramino can move that direction or not
     Tetramino.prototype.canMove = function (direction) {
@@ -57,6 +59,16 @@
         }
         return true;
     };
+
+    // functionality: marks the tetramino as locked into place so that no other tetramino can go there
+    // parameter: none
+    // returns: none
+    Tetramino.prototype.place = function() {
+        draw(this,"fill");
+        for (var i = 0; i < this.shapes[0].length; i++) {
+            setBlock(this.shapes[0][i][0],this.shapes[0][i][1],true);
+        }
+    }
 
 
     function createBoard(rows, cols) {
@@ -95,16 +107,6 @@
                 var classname = "block active black";
             }
             document.getElementById(blockid).setAttribute("class", classname);
-        }
-    }
-
-    function canMove(tetramino,direction) {
-    }
-
-    function place(tetramino) {
-        draw(tetramino,"fill");
-        for (var i = 0; i < tetramino.shapes[0].length; i++) {
-            setBlock(tetramino.shapes[0][i][0],tetramino.shapes[0][i][1],true);
         }
     }
 
@@ -159,7 +161,7 @@
             if (activeTetramino.canMove("down")) {
                 activeTetramino.move(1,0);
             } else {
-                place(activeTetramino);
+                activeTetramino.place();
                 checkBoard();
                 activeTetramino = new Tetramino(templateTetramino);
                 if(!activeTetramino.canMove("down")){
