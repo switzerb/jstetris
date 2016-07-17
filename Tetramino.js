@@ -34,7 +34,7 @@ Tetramino.prototype.move = function (r,c) {
      returns: boolean that indicates whether the tetramino can move that direction or not
 */
 Tetramino.prototype.canMove = function (direction) {
-    for(var i = 0; i < this.shapes[0].length; i++){
+    for(var i = 0; i < this.shapes[this.orientation].length; i++){
         if(direction == "down") {
             if((this.shapes[this.orientation][i][0] >= ROWS-1) || (getBlock(this.shapes[this.orientation][i][0]+1, this.shapes[this.orientation][i][1]) == true)) {
                 return false;
@@ -73,6 +73,15 @@ Tetramino.prototype.rotate = function (direction) {
         }
     }
     this.draw("fill");
+}
+
+
+Tetramino.prototype.canRotate = function(direction) {
+    if(direction == "left"){
+
+    } else if (direction =="right" ){
+
+    }
 }
 
 /*
