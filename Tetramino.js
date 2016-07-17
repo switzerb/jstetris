@@ -58,7 +58,11 @@ Tetramino.prototype.rotate = function (direction) {
     if (direction == "left") {
 
     } else if (direction == "right") {
-        this.orientation = 1;
+        if(this.orientation < 3) {
+            this.orientation = this.orientation + 1;
+        } else {
+            this.orientation = 0;
+        }
     }
 }
 
