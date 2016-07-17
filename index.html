@@ -35,6 +35,27 @@
         }
     };
 
+    // parameter: takes a direction that the tetramino is trying to move
+    // returns: boolean that indicates whether the tetramino can move that direction or not
+    Tetramino.prototype.canMove = function (direction) {
+        for(var i = 0; i < this.shapes[0].length; i++){
+            if(direction == "down") {
+                if((this.shapes[0][i][0] >= ROWS-1) || (getBlock(this.shapes[0][i][0]+1, this.shapes[0][i][1]) == true)) {
+                    return false;
+                }
+            } else if (direction == "right") {
+                if((this.shapes[0][i][1] >= COLS-1) || (getBlock(this.shapes[0][i][0], this.shapes[0][i][1]+1) == true)) {
+                    return false;
+                }
+            } else if (direction == "left") {
+                if((this.shapes[0][i][1] <= 0) || (getBlock(this.shapes[0][i][1], this.shapes[0][i][1]-1) == true)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+
 
     function createBoard(rows, cols) {
         var boardID = document.getElementById("board_container");
@@ -76,22 +97,6 @@
     }
 
     function canMove(tetramino,direction) {
-        for(var i = 0; i < tetramino.shapes[0].length; i++){
-            if(direction == "down") {
-                if((tetramino.shapes[0][i][0] >= ROWS-1) || (getBlock(tetramino.shapes[0][i][0]+1, tetramino.shapes[0][i][1]) == true)) {
-                    return false;
-                }
-            } else if (direction == "right") {
-                if((tetramino.shapes[0][i][1] >= COLS-1) || (getBlock(tetramino.shapes[0][i][0], tetramino.shapes[0][i][1]+1) == true)) {
-                    return false;
-                }
-            } else if (direction == "left") {
-                if((tetramino.shapes[0][i][1] <= 0) || (getBlock(tetramino.shapes[0][i][1], tetramino.shapes[0][i][1]-1) == true)) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     function place(tetramino) {
@@ -149,13 +154,13 @@
             if (activeTetramino == null) {
                 activeTetramino = new Tetramino(templateTetramino);
             }
-            if (canMove(activeTetramino,"down")) {
+            if (activeTetramino.canMove("down")) {
                 activeTetramino.move(1,0);
             } else {
                 place(activeTetramino);
                 checkBoard();
                 activeTetramino = new Tetramino(templateTetramino);
-                if(!canMove(activeTetramino,"down")){
+                if(!activeTetramino.canMove("down")){
                     console.log("game over");
                     stopGame();
                 }
@@ -174,11 +179,11 @@
 
     function keyboard(e) {
         if(e.key == "ArrowLeft"){
-            if(canMove(activeTetramino,"left")){
+            if(activeTetramino.canMove("left")){
                 activeTetramino.move(0,-1);
             }
         } else if (e.key == "ArrowRight") {
-            if(canMove(activeTetramino,"right")) {
+            if(activeTetramino.canMove("right")) {
                 activeTetramino.move(0, 1);
             }
         } else if (e.key == "ArrowUp") {
