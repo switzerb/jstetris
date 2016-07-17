@@ -25,6 +25,7 @@ Tetramino.prototype.move = function (r,c) {
             this.shapes[orientation][i][1] = this.shapes[orientation][i][1] + c;
         }
     }
+    this.draw("fill");
 };
 
 /*
@@ -80,10 +81,10 @@ Tetramino.prototype.rotate = function (direction) {
     returns: none
 */
 Tetramino.prototype.place = function() {
-    this.draw("fill");
     for (var i = 0; i < this.shapes[this.orientation].length; i++) {
         setBlock(this.shapes[this.orientation][i][0],this.shapes[this.orientation][i][1],true);
     }
+    this.draw("fill");
 };
 
 Tetramino.prototype.draw = function(action) {
