@@ -77,11 +77,12 @@ Tetramino.prototype.rotate = function (direction) {
 
 
 Tetramino.prototype.canRotate = function(direction) {
-    if(direction == "left"){
-
-    } else if (direction =="right" ){
-
+    for(var i = 0; i < this.shapes[this.orientation].length; i++) {
+        if((this.shapes[this.orientation][i][0] > ROWS) && (this.shapes[this.orientation][i][1] > COLS)) {
+            return false;
+        }
     }
+    return true;
 }
 
 /*

@@ -121,9 +121,13 @@
                 activeTetramino.move(0, 1);
             }
         } else if (e.key == "ArrowUp") {
-            activeTetramino.rotate("left");
+            if(activeTetramino.canRotate("left")){
+                activeTetramino.rotate("left");
+            }
         } else if (e.key == "ArrowDown") {
-            activeTetramino.rotate("right");
+            if(activeTetramino.canRotate("right")){
+                activeTetramino.rotate("right");
+            }
         }
     }
 
