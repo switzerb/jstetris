@@ -147,7 +147,7 @@
                 document.getElementById(block).setAttribute("class", classname);
             }
 
-            for(var r = row-1; r >= 0; r--){
+            for(var r = row-1; r > 0; r--){
                 var r_up = r - 1;
                 for (var c = 0; c < COLS; c++) {
                     var v = getBlock(r_up,c);
@@ -180,7 +180,6 @@
             var rand = Math.floor(Math.random() * tetraminoTemplates.length);
             var templateTetramino = tetraminoTemplates[rand];
 
-            //debugger;
             if (activeTetramino == null) {
 
                 activeTetramino = new Tetramino(templateTetramino);
