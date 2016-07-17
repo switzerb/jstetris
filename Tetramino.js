@@ -11,9 +11,11 @@ function Tetramino(template) {
     }
 }
 
-// functionality: moves the tetramino one step down, right or left
-// parameter: takes a row and a column to indicate the coordinates of where the tetramino is moving
-// returns: void
+/*
+     functionality: moves the tetramino one step down, right or left
+     parameter: takes a row and a column to indicate the coordinates of where the tetramino is moving
+     returns: void
+*/
 Tetramino.prototype.move = function (r,c) {
     this.draw("empty");
     for (var i = 0; i < this.shapes[0].length; i++) {
@@ -22,9 +24,11 @@ Tetramino.prototype.move = function (r,c) {
     }
 };
 
-// functionality: checks to see if a tetramino can move down, right or left
-// parameter: takes a direction that the tetramino is trying to move
-// returns: boolean that indicates whether the tetramino can move that direction or not
+/*
+     functionality: checks to see if a tetramino can move down, right or left
+     parameter: takes a direction that the tetramino is trying to move
+     returns: boolean that indicates whether the tetramino can move that direction or not
+*/
 Tetramino.prototype.canMove = function (direction) {
     for(var i = 0; i < this.shapes[0].length; i++){
         if(direction == "down") {
@@ -44,9 +48,11 @@ Tetramino.prototype.canMove = function (direction) {
     return true;
 };
 
-// functionality: marks the tetramino as locked into place so that no other tetramino can go there
-// parameter: none
-// returns: none
+/*
+    functionality: marks the tetramino as locked into place so that no other tetramino can go there
+    parameter: none
+    returns: none
+*/
 Tetramino.prototype.place = function() {
     this.draw("fill");
     for (var i = 0; i < this.shapes[0].length; i++) {
