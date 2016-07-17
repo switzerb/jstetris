@@ -7,6 +7,7 @@ tetraminoTemplates = [
             [[0, 0], [1, 0], [2, 0], [3, 0]],
             [[0, 0], [0, 1], [0, 2], [0, 3]]
         ],
+        orientation: 0,
         color: "cyan"
     },
     {
@@ -17,6 +18,7 @@ tetraminoTemplates = [
             [[0, 0], [0, 1], [1, 0], [2, 0]],
             [[0, 0], [1, 0], [1, 1], [1, 2]]
         ],
+        orientation: 0,
         color: "blue"
     },
     {
@@ -27,6 +29,7 @@ tetraminoTemplates = [
             [[0, 0], [0, 1], [1, 1], [2, 1]],
             [[0, 0], [0, 1], [0, 2], [1, 2]]
         ],
+        orientation: 0,
         color: "orange"
     },
     {
@@ -37,6 +40,7 @@ tetraminoTemplates = [
             [[1, 0], [1, 1], [0, 1], [0, 2]],
             [[0, 0], [1, 0], [1, 1], [2, 1]]
         ],
+        orientation: 0,
         color: "lime"
     },
     {
@@ -47,6 +51,7 @@ tetraminoTemplates = [
             [[0, 0], [0, 1], [1, 1], [1, 2]],
             [[0, 1], [1, 0], [1, 1], [2, 0]]
         ],
+        orientation: 0,
         color: "red"
     },
     {
@@ -57,6 +62,7 @@ tetraminoTemplates = [
             [[0, 1], [1, 0], [1, 1], [1, 2]],
             [[0, 1], [1, 0], [1, 1], [2, 1]]
         ],
+        orientation: 0,
         color: "purple"
     },
     {
@@ -67,6 +73,7 @@ tetraminoTemplates = [
             [[0, 0], [0, 1], [1, 0], [1, 1]],
             [[0, 0], [0, 1], [1, 0], [1, 1]]
         ],
+        orientation: 0,
         color: "yellow"
     }
 

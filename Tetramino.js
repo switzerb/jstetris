@@ -2,6 +2,7 @@ function Tetramino(template) {
     this.name = template.name;
     this.color = template.color;
     this.shapes = [];
+    this.orientation = template.orientation;
 
     for(var i = 0; i < template.shapes.length; i++) {
         this.shapes[i] = template.shapes[i].slice(0);
@@ -18,9 +19,9 @@ function Tetramino(template) {
 */
 Tetramino.prototype.move = function (r,c) {
     this.draw("empty");
-    for (var i = 0; i < this.shapes[0].length; i++) {
-        this.shapes[0][i][0] = this.shapes[0][i][0] + r;
-        this.shapes[0][i][1] = this.shapes[0][i][1] + c;
+    for (var i = 0; i < this.shapes[this.orientation].length; i++) {
+        this.shapes[this.orientation][i][0] = this.shapes[this.orientation][i][0] + r;
+        this.shapes[this.orientation][i][1] = this.shapes[this.orientation][i][1] + c;
     }
 };
 
@@ -32,15 +33,15 @@ Tetramino.prototype.move = function (r,c) {
 Tetramino.prototype.canMove = function (direction) {
     for(var i = 0; i < this.shapes[0].length; i++){
         if(direction == "down") {
-            if((this.shapes[0][i][0] >= ROWS-1) || (getBlock(this.shapes[0][i][0]+1, this.shapes[0][i][1]) == true)) {
+            if((this.shapes[this.orientation][i][0] >= ROWS-1) || (getBlock(this.shapes[this.orientation][i][0]+1, this.shapes[this.orientation][i][1]) == true)) {
                 return false;
             }
         } else if (direction == "right") {
-            if((this.shapes[0][i][1] >= COLS-1) || (getBlock(this.shapes[0][i][0], this.shapes[0][i][1]+1) == true)) {
+            if((this.shapes[this.orientation][i][1] >= COLS-1) || (getBlock(this.shapes[this.orientation][i][0], this.shapes[this.orientation][i][1]+1) == true)) {
                 return false;
             }
         } else if (direction == "left") {
-            if((this.shapes[0][i][1] <= 0) || (getBlock(this.shapes[0][i][0], this.shapes[0][i][1]-1) == true)) {
+            if((this.shapes[this.orientation][i][1] <= 0) || (getBlock(this.shapes[this.orientation][i][0], this.shapes[this.orientation][i][1]-1) == true)) {
                 return false;
             }
         }
@@ -57,7 +58,7 @@ Tetramino.prototype.rotate = function (direction) {
     if (direction == "left") {
 
     } else if (direction == "right") {
-
+        this.orientation = 1;
     }
 }
 
@@ -68,15 +69,15 @@ Tetramino.prototype.rotate = function (direction) {
 */
 Tetramino.prototype.place = function() {
     this.draw("fill");
-    for (var i = 0; i < this.shapes[0].length; i++) {
-        setBlock(this.shapes[0][i][0],this.shapes[0][i][1],true);
+    for (var i = 0; i < this.shapes[this.orientation].length; i++) {
+        setBlock(this.shapes[this.orientation][i][0],this.shapes[this.orientation][i][1],true);
     }
 };
 
 Tetramino.prototype.draw = function(action) {
-    for (var i = 0; i < this.shapes[0].length; i++) {
-        var row = (this.shapes[0][i][0]);
-        var col = this.shapes[0][i][1];
+    for (var i = 0; i < this.shapes[this.orientation].length; i++) {
+        var row = (this.shapes[this.orientation][i][0]);
+        var col = this.shapes[this.orientation][i][1];
         var blockid = "block_" + row + "_" + col;
         if (action == 'fill') {
             var classname = "block active " + this.color;
