@@ -83,7 +83,7 @@
 
     function tick() {
             var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-            var templateTetramino = tetraminoTemplates[rand];
+            var templateTetramino = tetraminoTemplates[2];
 
             if (activeTetramino == null) {
                 activeTetramino = new Tetramino(templateTetramino);
@@ -108,7 +108,7 @@
     }
 
     createBoard(ROWS, COLS);
-    var start = window.setInterval(tick, 200);
+    var start = window.setInterval(tick, 500);
 
     document.addEventListener("keydown", keyboard);
 
