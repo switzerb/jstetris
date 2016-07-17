@@ -19,9 +19,11 @@ function Tetramino(template) {
 */
 Tetramino.prototype.move = function (r,c) {
     this.draw("empty");
-    for (var i = 0; i < this.shapes[this.orientation].length; i++) {
-        this.shapes[this.orientation][i][0] = this.shapes[this.orientation][i][0] + r;
-        this.shapes[this.orientation][i][1] = this.shapes[this.orientation][i][1] + c;
+    for(var orientation = 0; orientation < this.shapes.length; orientation ++) {
+        for (var i = 0; i < this.shapes[orientation].length; i++) {
+            this.shapes[orientation][i][0] = this.shapes[orientation][i][0] + r;
+            this.shapes[orientation][i][1] = this.shapes[orientation][i][1] + c;
+        }
     }
 };
 
