@@ -68,7 +68,7 @@
         for (var i = 0; i < this.shapes[0].length; i++) {
             setBlock(this.shapes[0][i][0],this.shapes[0][i][1],true);
         }
-    }
+    };
 
     Tetramino.prototype.draw = function(action) {
         for (var i = 0; i < this.shapes[0].length; i++) {
@@ -82,7 +82,7 @@
             }
             document.getElementById(blockid).setAttribute("class", classname);
         }
-    }
+    };
 
     function createBoard(rows, cols) {
         var boardID = document.getElementById("board_container");
