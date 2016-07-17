@@ -49,6 +49,19 @@ Tetramino.prototype.canMove = function (direction) {
 };
 
 /*
+    function: rotates the tetramino one step left or right
+    parameter: takes a direction left or right
+    returns: void
+ */
+Tetramino.prototype.rotate = function (direction) {
+    if (direction == "left") {
+
+    } else if (direction == "right") {
+
+    }
+}
+
+/*
     functionality: marks the tetramino as locked into place so that no other tetramino can go there
     parameter: none
     returns: none
