@@ -53,9 +53,9 @@
     }
 
     function draw(tetramino, action) {
-        for (var i = 0; i < tetramino.shapes.length; i++) {
-            var row = (tetramino.shapes[i][0]);
-            var col = tetramino.shapes[i][1];
+        for (var i = 0; i < tetramino.shapes[0].length; i++) {
+            var row = (tetramino.shapes[0][i][0]);
+            var col = tetramino.shapes[0][i][1];
             var blockid = "block_" + row + "_" + col;
             if (action == 'fill') {
                 var classname = "block active " + tetramino.color;
@@ -67,17 +67,17 @@
     }
 
     function canMove(tetramino,direction) {
-        for(var i = 0; i < tetramino.shapes.length; i++){
+        for(var i = 0; i < tetramino.shapes[0].length; i++){
             if(direction == "down") {
-                if((tetramino.shapes[i][0] >= ROWS-1) || (getBlock(tetramino.shapes[i][0]+1, tetramino.shapes[i][1]) == true)) {
+                if((tetramino.shapes[0][i][0] >= ROWS-1) || (getBlock(tetramino.shapes[0][i][0]+1, tetramino.shapes[0][i][1]) == true)) {
                     return false;
                 }
             } else if (direction == "right") {
-                if((tetramino.shapes[i][1] >= COLS-1) || (getBlock(tetramino.shapes[i][0], tetramino.shapes[i][1]+1) == true)) {
+                if((tetramino.shapes[0][i][1] >= COLS-1) || (getBlock(tetramino.shapes[0][i][0], tetramino.shapes[0][i][1]+1) == true)) {
                     return false;
                 }
             } else if (direction == "left") {
-                if((tetramino.shapes[i][1] <= 0) || (getBlock(tetramino.shapes[i][1], tetramino.shapes[i][1]-1) == true)) {
+                if((tetramino.shapes[0][i][1] <= 0) || (getBlock(tetramino.shapes[0][i][1], tetramino.shapes[0][i][1]-1) == true)) {
                     return false;
                 }
             }
@@ -87,16 +87,16 @@
 
     function move(tetramino,r,c) {
         draw(tetramino,"empty");
-        for (var i = 0; i < tetramino.shapes.length; i++) {
-            tetramino.shapes[i][0] = tetramino.shapes[i][0] + r;
-            tetramino.shapes[i][1] = tetramino.shapes[i][1] + c;
+        for (var i = 0; i < tetramino.shapes[0].length; i++) {
+            tetramino.shapes[0][i][0] = tetramino.shapes[0][i][0] + r;
+            tetramino.shapes[0][i][1] = tetramino.shapes[0][i][1] + c;
         }
     }
 
     function place(tetramino) {
         draw(tetramino,"fill");
-        for (var i = 0; i < tetramino.shapes.length; i++) {
-            setBlock(tetramino.shapes[i][0],tetramino.shapes[i][1],true);
+        for (var i = 0; i < tetramino.shapes[0].length; i++) {
+            setBlock(tetramino.shapes[0][i][0],tetramino.shapes[0][i][1],true);
         }
     }
 
