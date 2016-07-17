@@ -71,6 +71,7 @@ Tetramino.prototype.rotate = function (direction) {
             this.orientation = 0;
         }
     }
+    this.draw("fill");
 }
 
 /*
