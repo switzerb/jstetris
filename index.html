@@ -31,7 +31,7 @@
     // parameter: takes a row and a column to indicate the coordinates of where the tetramino is moving
     // returns: void
     Tetramino.prototype.move = function (r,c) {
-        draw(this,"empty");
+        this.draw("empty");
         for (var i = 0; i < this.shapes[0].length; i++) {
             this.shapes[0][i][0] = this.shapes[0][i][0] + r;
             this.shapes[0][i][1] = this.shapes[0][i][1] + c;
@@ -64,12 +64,25 @@
     // parameter: none
     // returns: none
     Tetramino.prototype.place = function() {
-        draw(this,"fill");
+        this.draw("fill");
         for (var i = 0; i < this.shapes[0].length; i++) {
             setBlock(this.shapes[0][i][0],this.shapes[0][i][1],true);
         }
     }
 
+    Tetramino.prototype.draw = function(action) {
+        for (var i = 0; i < this.shapes[0].length; i++) {
+            var row = (this.shapes[0][i][0]);
+            var col = this.shapes[0][i][1];
+            var blockid = "block_" + row + "_" + col;
+            if (action == 'fill') {
+                var classname = "block active " + this.color;
+            } else {
+                var classname = "block active black";
+            }
+            document.getElementById(blockid).setAttribute("class", classname);
+        }
+    }
 
     function createBoard(rows, cols) {
         var boardID = document.getElementById("board_container");
@@ -94,20 +107,6 @@
 
     function setBlock(row, col, value) {
         board[row][col] = value;
-    }
-
-    function draw(tetramino, action) {
-        for (var i = 0; i < tetramino.shapes[0].length; i++) {
-            var row = (tetramino.shapes[0][i][0]);
-            var col = tetramino.shapes[0][i][1];
-            var blockid = "block_" + row + "_" + col;
-            if (action == 'fill') {
-                var classname = "block active " + tetramino.color;
-            } else {
-                var classname = "block active black";
-            }
-            document.getElementById(blockid).setAttribute("class", classname);
-        }
     }
 
     function clearRow(row) {
@@ -169,7 +168,7 @@
                     stopGame();
                 }
             }
-            draw(activeTetramino,"fill");
+            activeTetramino.draw("fill");
     }
 
     function stopGame() {
