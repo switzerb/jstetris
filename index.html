@@ -138,9 +138,9 @@
     function clearRow(row) {
         if(row > 0) {
             for (var col = 0; col < COLS; col++) {
-                var fill = getBlock(row - 1,col);
-                setBlock(row,col,fill);
                 var row_up = row - 1;
+                var fill = getBlock(row_up,col);
+                setBlock(row,col,fill);
                 var prevblock = "block_" + row_up + "_" + col;
                 var block = "block_" + row + "_" + col;
                 var classname = document.getElementById(prevblock).getAttribute("class");
@@ -148,11 +148,11 @@
             }
 
             for(var r = row-1; r >= 0; r--){
+                var r_up = r - 1;
                 for (var c = 0; c < COLS; c++) {
-                    var v = getBlock(r - 2,c);
-                    setBlock(r-1,c,v);
-                    var row_two_up = r - 2;
-                    var pblock = "block_" + row_two_up + "_" + c;
+                    var v = getBlock(r_up,c);
+                    setBlock(r,c,v);
+                    var pblock = "block_" + r_up + "_" + c;
                     var b = "block_" + r + "_" + c;
                     var cname = document.getElementById(pblock).getAttribute("class");
                     document.getElementById(b).setAttribute("class", cname);
@@ -178,7 +178,7 @@
 
     function tick() {
             var rand = Math.floor(Math.random() * tetraminoTemplates.length);
-            var templateTetramino = tetraminoTemplates[2];
+            var templateTetramino = tetraminoTemplates[rand];
 
             //debugger;
             if (activeTetramino == null) {
