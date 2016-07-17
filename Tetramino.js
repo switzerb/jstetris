@@ -56,7 +56,13 @@ Tetramino.prototype.canMove = function (direction) {
  */
 Tetramino.prototype.rotate = function (direction) {
     if (direction == "left") {
-
+        if(this.orientation > 0) {
+            this.orientation = this.orientation - 1;
+            console.log(this.orientation);
+        } else {
+            this.orientation = 3;
+            console.log(this.orientation);
+        }
     } else if (direction == "right") {
         if(this.orientation < 3) {
             this.orientation = this.orientation + 1;
