@@ -130,3 +130,11 @@ Tetramino.prototype.draw = function(action) {
         document.getElementById(blockid).setAttribute("class", classname);
     }
 };
+
+Tetramino.prototype.center = function(){
+    for(var orientation = 0; orientation < this.shapes.length; orientation++) {
+        for (var i = 0; i < this.shapes[orientation].length; i++) {
+            this.shapes[orientation][i][1] = this.shapes[orientation][i][1] + ((COLS/2) -2);
+        }
+    }
+}

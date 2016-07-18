@@ -90,6 +90,7 @@
 
             if (activeTetramino == null) {
                 activeTetramino = new Tetramino(templateTetramino);
+                activeTetramino.center();
                 activeTetramino.draw("fill");
             }
             if (activeTetramino.canMove("down")) {
@@ -98,6 +99,7 @@
                 activeTetramino.place();
                 checkBoard();
                 activeTetramino = new Tetramino(templateTetramino);
+                activeTetramino.center();
                 if(!activeTetramino.canMove("down")){
                     stopGame();
                 }
