@@ -6,8 +6,16 @@
     <script src="tetraminoTemplates.js"></script>
 </head>
 <body>
-<a href="#" onclick="stopGame();">Stop Game</a>
-<div id="board_container">Loading...</div>
+<div class="console">
+    <h1>Tetris, more or less</h1>
+    <h2>(mostly less)</h2>
+    <a href="#" onclick="stopGame();">Stop it.</a>
+    <div><p>Linecount: <strong id="linecount">0</strong></p></div>
+    <div id="message"></div>
+</div>
+<div id="board_container">
+    Loading...
+</div>
 
 <script type="application/javascript">
     ROWS = 20;
@@ -43,7 +51,7 @@
 
     function clearRow(row) {
         linecount += 1;
-
+        document.getElementById("linecount").innerHTML = linecount;
         if(row > 0) {
             for (var col = 0; col < COLS; col++) {
                 var row_up = row - 1;
@@ -89,6 +97,7 @@
             var templateTetramino = tetraminoTemplates[rand];
 
             if (activeTetramino == null) {
+                debugger;
                 activeTetramino = new Tetramino(templateTetramino);
                 activeTetramino.center();
                 activeTetramino.draw("fill");
@@ -102,6 +111,7 @@
                 activeTetramino.center();
                 if(!activeTetramino.canMove("down")){
                     stopGame();
+                    document.getElementById("message").innerHTML = "<h3>GAME OVER, SUCKER</h3>";
                 }
             }
     }
