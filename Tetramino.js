@@ -97,7 +97,7 @@ Tetramino.prototype.canRotate = function(direction) {
     }
 
     for(var i = 0; i < this.shapes[rotation].length; i++) {
-        if((this.shapes[rotation][i][1] >= COLS) || (this.shapes[rotation][i][0] >= ROWS)) {
+        if((this.shapes[rotation][i][1] >= COLS) || (this.shapes[rotation][i][0] >= ROWS) || (getBlock(this.shapes[rotation][i][0], this.shapes[rotation][i][1]) == true)) {
             return false;
         }
     }
