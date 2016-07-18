@@ -87,11 +87,6 @@ Tetramino.prototype.canRotate = function(direction) {
             rotation = 3;
         }
 
-        for(var i = 0; i < this.shapes[rotation].length; i++) {
-            if(this.shapes[rotation][i][1] >= COLS) {
-                return false;
-            }
-        }
     } else if (direction == "right") {
 
         if(rotation < 3) {
@@ -99,13 +94,14 @@ Tetramino.prototype.canRotate = function(direction) {
         } else {
             rotation = 0;
         }
+    }
 
-        for(var i = 0; i < this.shapes[rotation].length; i++) {
-            if(this.shapes[rotation][i][1] >= COLS) {
-                return false;
-            }
+    for(var i = 0; i < this.shapes[rotation].length; i++) {
+        if((this.shapes[rotation][i][1] >= COLS) || (this.shapes[rotation][i][0] >= ROWS)) {
+            return false;
         }
     }
+
     return true;
 }
 
