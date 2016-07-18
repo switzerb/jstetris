@@ -1,0 +1,49 @@
+#board_container {
+    text-align: center;
+    float: left;
+}
+body {
+    font-family: sans-serif;
+}
+.block {
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    font-size: 8px;
+    color: white;
+    background-color: black;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.cyan {
+    background-color: cyan;
+}
+
+.lime {
+    background-color: lime;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+.console {
+    width: 500px;
+    float: left;
+}
