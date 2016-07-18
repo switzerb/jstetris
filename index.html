@@ -13,6 +13,7 @@
     ROWS = 20;
     COLS = 10;
     activeTetramino = null;
+    linecount = 0;
     board = null;
 
     function createBoard(rows, cols) {
@@ -41,6 +42,8 @@
     }
 
     function clearRow(row) {
+        linecount += 1;
+        console.log(linecount);
         if(row > 0) {
             for (var col = 0; col < COLS; col++) {
                 var row_up = row - 1;
