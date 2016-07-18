@@ -77,9 +77,33 @@ Tetramino.prototype.rotate = function (direction) {
 
 
 Tetramino.prototype.canRotate = function(direction) {
-    for(var i = 0; i < this.shapes[this.orientation].length; i++) {
-        if((this.shapes[this.orientation][i][0] > ROWS) && (this.shapes[this.orientation][i][1] > COLS)) {
-            return false;
+    var rotation = this.orientation;
+
+    if(direction == "left"){
+
+        if(this.orientation > 0) {
+            rotation = this.orientation - 1;
+        } else {
+            rotation = 3;
+        }
+
+        for(var i = 0; i < this.shapes[rotation].length; i++) {
+            if(this.shapes[rotation][i][1] >= COLS) {
+                return false;
+            }
+        }
+    } else if (direction == "right") {
+
+        if(rotation < 3) {
+            rotation = this.orientation + 1;
+        } else {
+            rotation = 0;
+        }
+
+        for(var i = 0; i < this.shapes[rotation].length; i++) {
+            if(this.shapes[rotation][i][1] >= COLS) {
+                return false;
+            }
         }
     }
     return true;
