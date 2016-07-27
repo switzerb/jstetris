@@ -1,3 +1,6 @@
+// templates are not rotating from the center
+// rotations are not implementation, they are data
+
 tetraminoTemplates = [
     {
         name: "I",

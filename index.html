@@ -93,31 +93,32 @@
     }
 
     function tick() {
+            //don't have to do all the checks in one step
+
             var rand = Math.floor(Math.random() * tetraminoTemplates.length);
             var templateTetramino = tetraminoTemplates[rand];
 
             if (activeTetramino == null) {
-                debugger;
                 activeTetramino = new Tetramino(templateTetramino);
                 activeTetramino.center();
-                activeTetramino.draw("fill");
-            }
-            if (activeTetramino.canMove("down")) {
+                if (activeTetramino.canMove("down")) {
+                    activeTetramino.draw("fill");
+                } else {
+                    stopGame();
+                }
+            } else if (activeTetramino.canMove("down")) {
                 activeTetramino.move(1,0);
             } else {
                 activeTetramino.place();
                 checkBoard();
-                activeTetramino = new Tetramino(templateTetramino);
-                activeTetramino.center();
-                if(!activeTetramino.canMove("down")){
-                    stopGame();
-                    document.getElementById("message").innerHTML = "<h3>GAME OVER, SUCKER</h3>";
-                }
+                activeTetramino = null;
             }
     }
 
     function stopGame() {
         clearInterval(start);
+        document.getElementById("message").innerHTML = "<h3>GAME OVER, SUCKER</h3>";
+        activeTetramino = null;
     }
 
     createBoard(ROWS, COLS);
