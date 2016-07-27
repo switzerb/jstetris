@@ -119,6 +119,7 @@
         clearInterval(start);
         document.getElementById("message").innerHTML = "<h3>GAME OVER, SUCKER</h3>";
         activeTetramino = null;
+        document.removeEventListener("keydown", keyboard);
     }
 
     createBoard(ROWS, COLS);
@@ -128,19 +129,19 @@
 
     function keyboard(e) {
         if(e.key == "ArrowLeft"){
-            if(activeTetramino.canMove("left")){
+            if(activeTetramino != null && activeTetramino.canMove("left")){
                 activeTetramino.move(0,-1);
             }
         } else if (e.key == "ArrowRight") {
-            if(activeTetramino.canMove("right")) {
+            if(activeTetramino != null && activeTetramino.canMove("right")) {
                 activeTetramino.move(0, 1);
             }
         } else if (e.key == "ArrowUp") {
-            if(activeTetramino.canRotate("left")){
+            if(activeTetramino != null && activeTetramino.canRotate("left")){
                 activeTetramino.rotate("left");
             }
         } else if (e.key == "ArrowDown") {
-            if(activeTetramino.canRotate("right")){
+            if(activeTetramino != null && activeTetramino.canRotate("right")){
                 activeTetramino.rotate("right");
             }
         }
